@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+m.weipu.net.cn/Article/details/49804254.sHtML<br>
+m.weipu.net.cn/Article/details/13551412.sHtML<br>
+m.weipu.net.cn/Article/details/54877140.sHtML<br>
+m.weipu.net.cn/Article/details/79702900.sHtML<br>
+m.weipu.net.cn/Article/details/16190076.sHtML<br>
+m.weipu.net.cn/Article/details/34002398.sHtML<br>
+m.weipu.net.cn/Article/details/29389332.sHtML<br>
+m.weipu.net.cn/Article/details/82262851.sHtML<br>
+m.weipu.net.cn/Article/details/27900566.sHtML<br>
+m.weipu.net.cn/Article/details/91995986.sHtML<br>
+m.weipu.net.cn/Article/details/67336932.sHtML<br>
+m.weipu.net.cn/Article/details/12510098.sHtML<br>
+m.weipu.net.cn/Article/details/79762774.sHtML<br>
+m.weipu.net.cn/Article/details/71651088.sHtML<br>
+m.weipu.net.cn/Article/details/05084946.sHtML<br>
+m.weipu.net.cn/Article/details/86734464.sHtML<br>
+m.weipu.net.cn/Article/details/38352799.sHtML<br>
+m.weipu.net.cn/Article/details/19873707.sHtML<br>
+m.weipu.net.cn/Article/details/94927696.sHtML<br>
+m.weipu.net.cn/Article/details/20148536.sHtML<br>
+m.weipu.net.cn/Article/details/56244825.sHtML<br>
+m.weipu.net.cn/Article/details/61679377.sHtML<br>
+m.weipu.net.cn/Article/details/42065286.sHtML<br>
+m.weipu.net.cn/Article/details/89628294.sHtML<br>
+m.weipu.net.cn/Article/details/35437733.sHtML<br>
+m.weipu.net.cn/Article/details/19811030.sHtML<br>
+m.weipu.net.cn/Article/details/95039111.sHtML<br>
+m.weipu.net.cn/Article/details/32176485.sHtML<br>
+m.weipu.net.cn/Article/details/54745607.sHtML<br>
+m.weipu.net.cn/Article/details/35791121.sHtML<br>
+m.weipu.net.cn/Article/details/06848368.sHtML<br>
+m.weipu.net.cn/Article/details/42440548.sHtML<br>
+m.weipu.net.cn/Article/details/15745411.sHtML<br>
+m.weipu.net.cn/Article/details/34612480.sHtML<br>
+m.weipu.net.cn/Article/details/26989721.sHtML<br>
+m.weipu.net.cn/Article/details/97561709.sHtML<br>
+m.weipu.net.cn/Article/details/82787660.sHtML<br>
+m.weipu.net.cn/Article/details/20517118.sHtML<br>
+m.weipu.net.cn/Article/details/75498127.sHtML<br>
+m.weipu.net.cn/Article/details/86589688.sHtML<br>
+m.weipu.net.cn/Article/details/23236007.sHtML<br>
+m.weipu.net.cn/Article/details/30974794.sHtML<br>
+m.weipu.net.cn/Article/details/49545732.sHtML<br>
+m.weipu.net.cn/Article/details/80698870.sHtML<br>
+m.weipu.net.cn/Article/details/83244327.sHtML<br>
+m.weipu.net.cn/Article/details/64962926.sHtML<br>
+m.weipu.net.cn/Article/details/27361632.sHtML<br>
+m.weipu.net.cn/Article/details/89861151.sHtML<br>
+m.weipu.net.cn/Article/details/78735922.sHtML<br>
+m.weipu.net.cn/Article/details/42403255.sHtML<br>
+m.weipu.net.cn/Article/details/94989137.sHtML<br>
+m.weipu.net.cn/Article/details/98639374.sHtML<br>
+m.weipu.net.cn/Article/details/05772349.sHtML<br>
+m.weipu.net.cn/Article/details/27900285.sHtML<br>
+m.weipu.net.cn/Article/details/20656348.sHtML<br>
+m.weipu.net.cn/Article/details/60923425.sHtML<br>
+m.weipu.net.cn/Article/details/49437876.sHtML<br>
+m.weipu.net.cn/Article/details/53810280.sHtML<br>
+m.weipu.net.cn/Article/details/65746997.sHtML<br>
+m.weipu.net.cn/Article/details/43185023.sHtML<br>
+m.weipu.net.cn/Article/details/75732854.sHtML<br>
+m.weipu.net.cn/Article/details/46598893.sHtML<br>
+m.weipu.net.cn/Article/details/05731653.sHtML<br>
+m.weipu.net.cn/Article/details/57333666.sHtML<br>
+m.weipu.net.cn/Article/details/77922540.sHtML<br>
+m.weipu.net.cn/Article/details/27336779.sHtML<br>
+m.weipu.net.cn/Article/details/05002657.sHtML<br>
+m.weipu.net.cn/Article/details/87230330.sHtML<br>
+m.weipu.net.cn/Article/details/23218835.sHtML<br>
+m.weipu.net.cn/Article/details/94660232.sHtML<br>
+m.weipu.net.cn/Article/details/54993535.sHtML<br>
+m.weipu.net.cn/Article/details/98098526.sHtML<br>
+m.weipu.net.cn/Article/details/15534199.sHtML<br>
+m.weipu.net.cn/Article/details/83991825.sHtML<br>
+m.weipu.net.cn/Article/details/57338908.sHtML<br>
+m.weipu.net.cn/Article/details/67969242.sHtML<br>
+m.weipu.net.cn/Article/details/46833106.sHtML<br>
+m.weipu.net.cn/Article/details/54661206.sHtML<br>
+m.weipu.net.cn/Article/details/42116887.sHtML<br>
+m.weipu.net.cn/Article/details/98176918.sHtML<br>
+m.weipu.net.cn/Article/details/34322879.sHtML<br>
+m.weipu.net.cn/Article/details/53755419.sHtML<br>
+m.weipu.net.cn/Article/details/50947590.sHtML<br>
+m.weipu.net.cn/Article/details/24621463.sHtML<br>
+m.weipu.net.cn/Article/details/90628428.sHtML<br>
+m.weipu.net.cn/Article/details/27143078.sHtML<br>
+m.weipu.net.cn/Article/details/30245499.sHtML<br>
+m.weipu.net.cn/Article/details/59726936.sHtML<br>
+m.weipu.net.cn/Article/details/32911668.sHtML<br>
+m.weipu.net.cn/Article/details/98888098.sHtML<br>
+m.weipu.net.cn/Article/details/83743331.sHtML<br>
+m.weipu.net.cn/Article/details/91465434.sHtML<br>
+m.weipu.net.cn/Article/details/83342222.sHtML<br>
+m.weipu.net.cn/Article/details/64666674.sHtML<br>
+m.weipu.net.cn/Article/details/87265113.sHtML<br>
+m.weipu.net.cn/Article/details/79192161.sHtML<br>
+m.weipu.net.cn/Article/details/21950065.sHtML<br>
+m.weipu.net.cn/Article/details/27996827.sHtML<br>
+m.weipu.net.cn/Article/details/23921736.sHtML<br>
+m.weipu.net.cn/Article/details/13554417.sHtML<br>
+m.weipu.net.cn/Article/details/05473850.sHtML<br>
+m.weipu.net.cn/Article/details/61643684.sHtML<br>
+m.weipu.net.cn/Article/details/64706321.sHtML<br>
+m.weipu.net.cn/Article/details/05060560.sHtML<br>
+m.weipu.net.cn/Article/details/83247022.sHtML<br>
+m.weipu.net.cn/Article/details/97346274.sHtML<br>
+m.weipu.net.cn/Article/details/76492021.sHtML<br>
+m.weipu.net.cn/Article/details/48440644.sHtML<br>
+m.weipu.net.cn/Article/details/01770405.sHtML<br>
+m.weipu.net.cn/Article/details/52149439.sHtML<br>
+m.weipu.net.cn/Article/details/57915432.sHtML<br>
+m.weipu.net.cn/Article/details/83571433.sHtML<br>
+m.weipu.net.cn/Article/details/46117562.sHtML<br>
+m.weipu.net.cn/Article/details/02490009.sHtML<br>
+m.weipu.net.cn/Article/details/72168416.sHtML<br>
+m.weipu.net.cn/Article/details/42747560.sHtML<br>
+m.weipu.net.cn/Article/details/61925905.sHtML<br>
+m.weipu.net.cn/Article/details/79375872.sHtML<br>
+m.weipu.net.cn/Article/details/54697704.sHtML<br>
+m.weipu.net.cn/Article/details/34023467.sHtML<br>
+m.weipu.net.cn/Article/details/04248760.sHtML<br>
+m.weipu.net.cn/Article/details/39779849.sHtML<br>
+m.weipu.net.cn/Article/details/81351443.sHtML<br>
+m.weipu.net.cn/Article/details/75461803.sHtML<br>
+m.weipu.net.cn/Article/details/17139000.sHtML<br>
+m.weipu.net.cn/Article/details/01328905.sHtML<br>
+m.weipu.net.cn/Article/details/76403444.sHtML<br>
+m.weipu.net.cn/Article/details/57043990.sHtML<br>
+m.weipu.net.cn/Article/details/15864772.sHtML<br>
+m.weipu.net.cn/Article/details/60398504.sHtML<br>
+m.weipu.net.cn/Article/details/69972751.sHtML<br>
+m.weipu.net.cn/Article/details/27926434.sHtML<br>
+m.weipu.net.cn/Article/details/97363574.sHtML<br>
+m.weipu.net.cn/Article/details/96444966.sHtML<br>
+m.weipu.net.cn/Article/details/53655466.sHtML<br>
+m.weipu.net.cn/Article/details/19734934.sHtML<br>
+m.weipu.net.cn/Article/details/37648379.sHtML<br>
+m.weipu.net.cn/Article/details/86355977.sHtML<br>
+m.weipu.net.cn/Article/details/79573847.sHtML<br>
+m.weipu.net.cn/Article/details/13945004.sHtML<br>
+m.weipu.net.cn/Article/details/50421182.sHtML<br>
+m.weipu.net.cn/Article/details/98764106.sHtML<br>
+m.weipu.net.cn/Article/details/27623644.sHtML<br>
+m.weipu.net.cn/Article/details/68795325.sHtML<br>
+m.weipu.net.cn/Article/details/20273707.sHtML<br>
+m.weipu.net.cn/Article/details/24521869.sHtML<br>
+m.weipu.net.cn/Article/details/61302170.sHtML<br>
+m.weipu.net.cn/Article/details/63414223.sHtML<br>
+m.weipu.net.cn/Article/details/23898431.sHtML<br>
+m.weipu.net.cn/Article/details/78214899.sHtML<br>
+m.weipu.net.cn/Article/details/23800202.sHtML<br>
+m.weipu.net.cn/Article/details/72218981.sHtML<br>
+m.weipu.net.cn/Article/details/23548550.sHtML<br>
+m.weipu.net.cn/Article/details/50786006.sHtML<br>
+m.weipu.net.cn/Article/details/57688130.sHtML<br>
+m.weipu.net.cn/Article/details/43635257.sHtML<br>
+m.weipu.net.cn/Article/details/39963392.sHtML<br>
+m.weipu.net.cn/Article/details/57675522.sHtML<br>
+m.weipu.net.cn/Article/details/61645291.sHtML<br>
+m.weipu.net.cn/Article/details/70798728.sHtML<br>
+m.weipu.net.cn/Article/details/53446681.sHtML<br>
+m.weipu.net.cn/Article/details/09831355.sHtML<br>
+m.weipu.net.cn/Article/details/56298031.sHtML<br>
+m.weipu.net.cn/Article/details/72797073.sHtML<br>
+m.weipu.net.cn/Article/details/51632258.sHtML<br>
+m.weipu.net.cn/Article/details/38776341.sHtML<br>
+m.weipu.net.cn/Article/details/19743273.sHtML<br>
+m.weipu.net.cn/Article/details/56580332.sHtML<br>
+m.weipu.net.cn/Article/details/02416139.sHtML<br>
+m.weipu.net.cn/Article/details/27264372.sHtML<br>
+m.weipu.net.cn/Article/details/23173799.sHtML<br>
+m.weipu.net.cn/Article/details/24977908.sHtML<br>
+m.weipu.net.cn/Article/details/05842859.sHtML<br>
+m.weipu.net.cn/Article/details/86905255.sHtML<br>
+m.weipu.net.cn/Article/details/74655413.sHtML<br>
+m.weipu.net.cn/Article/details/28461922.sHtML<br>
+m.weipu.net.cn/Article/details/56212690.sHtML<br>
+m.weipu.net.cn/Article/details/79452000.sHtML<br>
+m.weipu.net.cn/Article/details/56865747.sHtML<br>
+m.weipu.net.cn/Article/details/13957189.sHtML<br>
+m.weipu.net.cn/Article/details/86523957.sHtML<br>
+m.weipu.net.cn/Article/details/15176260.sHtML<br>
+m.weipu.net.cn/Article/details/61795436.sHtML<br>
+m.weipu.net.cn/Article/details/20844412.sHtML<br>
+m.weipu.net.cn/Article/details/86005709.sHtML<br>
+m.weipu.net.cn/Article/details/32481491.sHtML<br>
+m.weipu.net.cn/Article/details/80957187.sHtML<br>
+m.weipu.net.cn/Article/details/12394342.sHtML<br>
+m.weipu.net.cn/Article/details/23007631.sHtML<br>
+m.weipu.net.cn/Article/details/42872294.sHtML<br>
+m.weipu.net.cn/Article/details/66296144.sHtML<br>
+m.weipu.net.cn/Article/details/57617875.sHtML<br>
+m.weipu.net.cn/Article/details/25079827.sHtML<br>
+m.weipu.net.cn/Article/details/83820917.sHtML<br>
+m.weipu.net.cn/Article/details/27623479.sHtML<br>
+m.weipu.net.cn/Article/details/83935695.sHtML<br>
+m.weipu.net.cn/Article/details/87344417.sHtML<br>
+m.weipu.net.cn/Article/details/20299424.sHtML<br>
+m.weipu.net.cn/Article/details/61224514.sHtML<br>
+m.weipu.net.cn/Article/details/71776259.sHtML<br>
+m.weipu.net.cn/Article/details/75832968.sHtML<br>
+m.weipu.net.cn/Article/details/04770342.sHtML<br>
+m.weipu.net.cn/Article/details/61006069.sHtML<br>
+m.weipu.net.cn/Article/details/40690212.sHtML<br>
+m.weipu.net.cn/Article/details/72583759.sHtML<br>
+m.weipu.net.cn/Article/details/27603297.sHtML<br>
+m.weipu.net.cn/Article/details/81392453.sHtML<br>
+m.weipu.net.cn/Article/details/80292609.sHtML<br>
+m.weipu.net.cn/Article/details/56559122.sHtML<br>
+m.weipu.net.cn/Article/details/64743334.sHtML<br>
+m.weipu.net.cn/Article/details/98324924.sHtML<br>
+m.weipu.net.cn/Article/details/97181485.sHtML<br>
+m.weipu.net.cn/Article/details/16470947.sHtML<br>
+m.weipu.net.cn/Article/details/32474672.sHtML<br>
+m.weipu.net.cn/Article/details/59568689.sHtML<br>
+m.weipu.net.cn/Article/details/38309335.sHtML<br>
+m.weipu.net.cn/Article/details/59292794.sHtML<br>
+m.weipu.net.cn/Article/details/42148068.sHtML<br>
+m.weipu.net.cn/Article/details/91367301.sHtML<br>
+m.weipu.net.cn/Article/details/18776849.sHtML<br>
+m.weipu.net.cn/Article/details/87262189.sHtML<br>
+m.weipu.net.cn/Article/details/01462262.sHtML<br>
+m.weipu.net.cn/Article/details/19476588.sHtML<br>
+m.weipu.net.cn/Article/details/73659961.sHtML<br>
+m.weipu.net.cn/Article/details/72921732.sHtML<br>
+m.weipu.net.cn/Article/details/35410620.sHtML<br>
+m.weipu.net.cn/Article/details/46437380.sHtML<br>
+m.weipu.net.cn/Article/details/39330220.sHtML<br>
+m.weipu.net.cn/Article/details/02441017.sHtML<br>
+m.weipu.net.cn/Article/details/80939702.sHtML<br>
+m.weipu.net.cn/Article/details/94668712.sHtML<br>
+m.weipu.net.cn/Article/details/70259471.sHtML<br>
+m.weipu.net.cn/Article/details/64662809.sHtML<br>
+m.weipu.net.cn/Article/details/19049661.sHtML<br>
+m.weipu.net.cn/Article/details/27853887.sHtML<br>
+m.weipu.net.cn/Article/details/86092906.sHtML<br>
+m.weipu.net.cn/Article/details/32567650.sHtML<br>
+m.weipu.net.cn/Article/details/49855439.sHtML<br>
+m.weipu.net.cn/Article/details/75742918.sHtML<br>
+m.weipu.net.cn/Article/details/96946793.sHtML<br>
+m.weipu.net.cn/Article/details/61973812.sHtML<br>
+m.weipu.net.cn/Article/details/40941018.sHtML<br>
+m.weipu.net.cn/Article/details/49861787.sHtML<br>
+m.weipu.net.cn/Article/details/77322083.sHtML<br>
+m.weipu.net.cn/Article/details/02117611.sHtML<br>
+m.weipu.net.cn/Article/details/94356806.sHtML<br>
+m.weipu.net.cn/Article/details/31639438.sHtML<br>
+m.weipu.net.cn/Article/details/72179329.sHtML<br>
+m.weipu.net.cn/Article/details/10527753.sHtML<br>
+m.weipu.net.cn/Article/details/79717919.sHtML<br>
+m.weipu.net.cn/Article/details/98286809.sHtML<br>
+m.weipu.net.cn/Article/details/15841248.sHtML<br>
+m.weipu.net.cn/Article/details/10558436.sHtML<br>
+m.weipu.net.cn/Article/details/19179365.sHtML<br>
+m.weipu.net.cn/Article/details/27651520.sHtML<br>
+m.weipu.net.cn/Article/details/15470586.sHtML<br>
+m.weipu.net.cn/Article/details/24395202.sHtML<br>
+m.weipu.net.cn/Article/details/23558095.sHtML<br>
+m.weipu.net.cn/Article/details/06885105.sHtML<br>
+m.weipu.net.cn/Article/details/98411777.sHtML<br>
+m.weipu.net.cn/Article/details/98036925.sHtML<br>
+m.weipu.net.cn/Article/details/09812108.sHtML<br>
+m.weipu.net.cn/Article/details/35447447.sHtML<br>
+m.weipu.net.cn/Article/details/71776280.sHtML<br>
+m.weipu.net.cn/Article/details/95405244.sHtML<br>
+m.weipu.net.cn/Article/details/91665518.sHtML<br>
+m.weipu.net.cn/Article/details/78329575.sHtML<br>
+m.weipu.net.cn/Article/details/49483037.sHtML<br>
+m.weipu.net.cn/Article/details/91778006.sHtML<br>
+m.weipu.net.cn/Article/details/08424723.sHtML<br>
+m.weipu.net.cn/Article/details/57693896.sHtML<br>
+m.weipu.net.cn/Article/details/26130367.sHtML<br>
+m.weipu.net.cn/Article/details/10591038.sHtML<br>
+m.weipu.net.cn/Article/details/75188020.sHtML<br>
+m.weipu.net.cn/Article/details/06217828.sHtML<br>
+m.weipu.net.cn/Article/details/69842147.sHtML<br>
+m.weipu.net.cn/Article/details/03137922.sHtML<br>
+m.weipu.net.cn/Article/details/19596613.sHtML<br>
+m.weipu.net.cn/Article/details/17807353.sHtML<br>
+m.weipu.net.cn/Article/details/39740287.sHtML<br>
+m.weipu.net.cn/Article/details/19891476.sHtML<br>
+m.weipu.net.cn/Article/details/68076536.sHtML<br>
+m.weipu.net.cn/Article/details/94662492.sHtML<br>
+m.weipu.net.cn/Article/details/51789148.sHtML<br>
+m.weipu.net.cn/Article/details/87925034.sHtML<br>
+m.weipu.net.cn/Article/details/53955434.sHtML<br>
+m.weipu.net.cn/Article/details/50613589.sHtML<br>
+m.weipu.net.cn/Article/details/25493263.sHtML<br>
+m.weipu.net.cn/Article/details/67423541.sHtML<br>
+m.weipu.net.cn/Article/details/78887937.sHtML<br>
+m.weipu.net.cn/Article/details/80550701.sHtML<br>
+m.weipu.net.cn/Article/details/57665150.sHtML<br>
+m.weipu.net.cn/Article/details/74062638.sHtML<br>
+m.weipu.net.cn/Article/details/37634699.sHtML<br>
+m.weipu.net.cn/Article/details/97622828.sHtML<br>
+m.weipu.net.cn/Article/details/60654274.sHtML<br>
+m.weipu.net.cn/Article/details/08610909.sHtML<br>
+m.weipu.net.cn/Article/details/80925840.sHtML<br>
+m.weipu.net.cn/Article/details/67925983.sHtML<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2402:23:50
